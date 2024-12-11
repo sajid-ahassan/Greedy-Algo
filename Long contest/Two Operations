@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define all(x) (x).begin(), (x).end()
+#define allr(x) (x).rbegin(), (x).rend()
+#define gsize(x) (int)((x).size())
+#define int long long
+// #define endl '\n'
+bool comparePairs(const pair<int, int> &a, const pair<int, int> &b)
+{
+    if (a.first != b.first)
+        return a.first > b.first;
+    return a.second < b.second;
+}
+#define optimize()                \
+    ios_base::sync_with_stdio(0); \
+    cin.tie(0);                   \
+    cout.tie(0);
+const int mod = 1e10 + 7;
+
+bool solve()
+{
+}
+
+signed main()
+{
+    optimize();
+    string str;
+    cin >> str;
+    vector<int> frq(27);
+    for (int i = 0; i < gsize(str); i++)
+    {
+        frq[str[i] - 'a']++;
+    }
+    for (int i = 0; i < 25; i++)
+    {
+        int add = frq[i] / 2;
+        frq[i + 1] += add;
+        frq[i] -= add * 2;
+    }
+    for (int i = 25; i >= 0; i--)
+    {
+        for (int j = 0; j < frq[i]; j++)
+            cout << char(i + 'a');
+    }
+    cout << endl;
+    return 0;
+}
