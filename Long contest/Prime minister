@@ -1,0 +1,64 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define all(x) ++(x).begin(), (x).end()
+#define allr(x) (x).rbegin(), (x).rend()
+#define gsize(x) (int)((x).size())
+#define int long long
+
+#define endl '\n'
+bool comparePairs(const pair<int, int> &a, const pair<int, int> &b)
+{
+    if (a.first != b.first)
+        return a.first > b.first;
+    return a.second < b.second;
+}
+#define optimize()                \
+    ios_base::sync_with_stdio(0); \
+    cin.tie(0);                   \
+    cout.tie(0);
+const int mod = 1e9;
+
+void solve()
+{
+}
+
+signed main()
+{
+    optimize();
+    int n;
+    cin >> n;
+    vector<pair<int, int>> arr;
+    int sum = 0;
+    for (int i = 0; i < n; i++)
+    {
+        int x, y;
+        cin >> x;
+        arr.push_back({x, i});
+        sum += x;
+    }
+    sort(all(arr));
+    int s = arr[0].first;
+    vector<int> a;
+    a.push_back(arr[0].second);
+    for (int i = 1; i < n; i++)
+    {
+        if (arr[i].first <= arr[0].first / 2.0)
+        {
+            a.push_back(arr[i].second);
+            s += arr[i].first;
+        }
+        if (s >= sum / 2.0)
+            break;
+    }
+    if (s <= sum / 2.0)
+        cout << 0 << endl;
+    else
+    {
+        cout << gsize(a) << endl;
+        for (auto it : a)
+            cout << it + 1 << ' ';
+        cout << endl;
+    }
+    return 0;
+}
