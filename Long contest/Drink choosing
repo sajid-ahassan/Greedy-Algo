@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define all(x) (x).begin(), (x).end()
+#define allr(x) (x).rbegin(), (x).rend()
+#define gsize(x) (int)((x).size())
+#define int long long
+// #define endl '\n'
+bool comparePairs(const pair<int, int> &a, const pair<int, int> &b)
+{
+    if (a.first != b.first)
+        return a.first > b.first;
+    return a.second < b.second;
+}
+#define optimize()                \
+    ios_base::sync_with_stdio(0); \
+    cin.tie(0);                   \
+    cout.tie(0);
+const int mod = 1e10 + 7;
+
+bool solve()
+{
+}
+
+signed main()
+{
+    optimize();
+    int n, k;
+    cin >> n >> k;
+    vector<int> v(n);
+    for (int i = 0; i < n; i++)
+        cin >> v[i];
+    vector<int> vf(k + 1, 0);
+    int pr = ceil(n / 2.0), ct = 0;
+    for (int i = 0; i < n; i++)
+    {
+        vf[v[i]]++;
+        if (vf[v[i]] == 2)
+        {
+            ct += 2;
+            vf[v[i]] = 0;
+            pr--;
+            if (pr == 0)
+                break;
+        }
+    }
+    cout << ct + pr << endl;
+
+    return 0;
+}
